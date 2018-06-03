@@ -15,6 +15,16 @@ $ go run client/grpc_health_check.go  localhost:9000 service-name
 
 ```
 
+## Linux Binary
+```
+env GOOS=linux go build client/grpc_health_check.go 
+```
+
+```
+tar -cvzf grpc_health_check.tar.gz grpc_health_check
+```
+
+
 ### Based on
 https://github.com/go-training/grpc-health-check 
 

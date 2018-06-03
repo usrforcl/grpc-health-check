@@ -12,9 +12,6 @@ import (
 	"os"
 )
 
-const (
-	address = "localhost:56000"
-)
 
 func main() {
 
@@ -25,8 +22,9 @@ func main() {
 		return
 	}
 	server := os.Args[1]
-	service := "";
-	if len(os.Args)<3 {
+	service := ""
+
+	if len(os.Args) > 2 {
 		service = os.Args[2]
 	}
 
@@ -42,10 +40,11 @@ func main() {
 
 	ok, err := client.Check(context.Background(),service)
 		if !ok || err != nil {
-			log.Printf("can't connect grpc server ( %v ) : \n%v, \ncode: %v\n", address, err, grpc.Code(err))
+			log.Printf("can't connect grpc server ( %v ) for service ( %v ) : \n%v, \ncode: %v\n", server,
+				service, err, grpc.Code(err))
 			os.Exit(1)
 		} else {
-			log.Printf("connect the grpc server ( %v ) successfully",address)
+			log.Printf("connect the grpc server ( %v ) for service ( %v ) successfully",server,service)
 			os.Exit(0)
 			}
 }
